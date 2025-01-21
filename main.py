@@ -23,7 +23,7 @@ app = Flask(__name__)
 TEMP_DIR = "temp_images"
 os.makedirs(TEMP_DIR, exist_ok=True)
 # Enable CORS for the frontend domain (localhost:8080)
-CORS(app, resources={r"/*": {"origins": "https://superb-bonbon-313c8d.netlify.app"}})
+CORS(app)
 # Logging configuration
 logging.basicConfig(level=logging.INFO)
 
