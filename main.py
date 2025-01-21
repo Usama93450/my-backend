@@ -77,6 +77,12 @@ def send_email(name, email, message):
 @app.route('/remove-background', methods=['POST', 'OPTIONS'])
 def remove_background():
     """Remove background from the uploaded image."""
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     if 'image' not in request.files:
         return {'error': 'No file uploaded'}, 400
 
@@ -110,6 +116,12 @@ def remove_background():
 
 @app.route('/contact', methods=['POST', 'OPTIONS'])
 def contact():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     try:
         data = request.json
         logging.info(f"Received payload: {data}")  # Debug log
@@ -138,6 +150,12 @@ def contact():
 
 @app.route('/compress-image', methods=['POST', 'OPTIONS'])
 def compress_image():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     if 'image' not in request.files:
         return {'error': 'No file uploaded'}, 400
 
@@ -162,6 +180,12 @@ def compress_image():
 
 @app.route('/login_user', methods=['POST', 'OPTIONS'])
 def login_user():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -192,6 +216,12 @@ def login_user():
 
 @app.route('/register_user', methods=['POST', 'OPTIONS'])
 def register_user():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     """Register a new user."""
     try:
         data = request.get_json()
@@ -221,6 +251,12 @@ def register_user():
     
 @app.route('/remove_backgrounds',methods=['POST', 'OPTIONS'])
 def remove_backgrounds():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     if 'image' not in request.files:
         return {'error': 'No files uploaded'}, 400
 
@@ -260,6 +296,12 @@ def remove_backgrounds():
 
 @app.route('/compress-imagess', methods=['POST', 'OPTIONS'])
 def compress_imagess():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     if 'images' not in request.files:
         return {'error': 'No files uploaded'}, 400
 
@@ -293,6 +335,12 @@ def compress_imagess():
     return send_file(temp_zip_file.name, mimetype='application/zip', as_attachment=True, download_name="compressed_images.zip")
 @app.route('/batch-crop-and-compress', methods=['POST', 'OPTIONS'])
 def batch_crop_and_compress():
+    if request.method == 'OPTIONS':
+        # Handling the preflight request
+        response = app.make_response('')
+        response.headers['Access-Control-Allow-Origin'] = 'https://euphonious-gumption-3c4ce8.netlify.app'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     if 'images' not in request.files:
         return {'error': 'No files uploaded'}, 400
 
