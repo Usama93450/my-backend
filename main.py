@@ -74,7 +74,7 @@ def send_email(name, email, message):
         logging.error(f"Failed to send email: {e}")
 
 
-@app.route('/remove-background', methods=['POST'])
+@app.route('/remove-background', methods=['POST', 'OPTIONS'])
 def remove_background():
     """Remove background from the uploaded image."""
     if 'image' not in request.files:
@@ -108,7 +108,7 @@ def remove_background():
         return {'error': 'An error occurred while processing the image'}, 500
 
 
-@app.route('/contact', methods=['POST'])
+@app.route('/contact', methods=['POST', 'OPTIONS'])
 def contact():
     try:
         data = request.json
@@ -136,7 +136,7 @@ def contact():
         return jsonify({"success": False, "message": "An unexpected error occurred"}), 500
 
 
-@app.route('/compress-image', methods=['POST'])
+@app.route('/compress-image', methods=['POST', 'OPTIONS'])
 def compress_image():
     if 'image' not in request.files:
         return {'error': 'No file uploaded'}, 400
@@ -160,7 +160,7 @@ def compress_image():
     return send_file(temp_file_path, mimetype='image/jpeg', as_attachment=True, download_name="compressed_image.jpg")
 
 
-@app.route('/login_user', methods=['POST'])
+@app.route('/login_user', methods=['POST', 'OPTIONS'])
 def login_user():
     data = request.json
     username = data.get('username')
@@ -190,7 +190,7 @@ def login_user():
         return jsonify({"success": False, "message": "Invalid password!"}), 401
 
 
-@app.route('/register_user', methods=['POST'])
+@app.route('/register_user', methods=['POST', 'OPTIONS'])
 def register_user():
     """Register a new user."""
     try:
@@ -219,7 +219,7 @@ def register_user():
         print(f"Error occurred: {e}")
         return jsonify({"success": False, "message": "An error occurred while processing your request."}), 500
     
-@app.route('/remove_backgrounds', methods=['POST'])
+@app.route('/remove_backgrounds',methods=['POST', 'OPTIONS'])
 def remove_backgrounds():
     if 'image' not in request.files:
         return {'error': 'No files uploaded'}, 400
@@ -258,7 +258,7 @@ def remove_backgrounds():
     # Send the zip file back to the client
     return send_file(temp_zip_file.name, mimetype='application/zip', as_attachment=True, download_name="background_removed_images.zip")
 
-@app.route('/compress-imagess', methods=['POST'])
+@app.route('/compress-imagess', methods=['POST', 'OPTIONS'])
 def compress_imagess():
     if 'images' not in request.files:
         return {'error': 'No files uploaded'}, 400
@@ -291,7 +291,7 @@ def compress_imagess():
 
     # Send the zip file back to the client
     return send_file(temp_zip_file.name, mimetype='application/zip', as_attachment=True, download_name="compressed_images.zip")
-@app.route('/batch-crop-and-compress', methods=['POST'])
+@app.route('/batch-crop-and-compress', methods=['POST', 'OPTIONS'])
 def batch_crop_and_compress():
     if 'images' not in request.files:
         return {'error': 'No files uploaded'}, 400
