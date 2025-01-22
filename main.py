@@ -17,13 +17,22 @@ import numpy as np
 import io
 import logging
 import traceback
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
+
 
 TEMP_DIR = "temp_images"
 os.makedirs(TEMP_DIR, exist_ok=True)
 # Enable CORS for the frontend domain (localhost:8080)
-CORS(app, origins=["http://localhost:8080"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://euphonious-gumption-3c4ce8.netlify.app"],  # Frontend URL
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  # Allowed methods
+    allow_headers=["Content-Type", "Authorization"],  # Allowed headers
+)
 # Logging configuration
 logging.basicConfig(level=logging.INFO)
 
